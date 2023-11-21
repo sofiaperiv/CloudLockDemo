@@ -1,0 +1,109 @@
+
+<OpenScreen>:
+    #:import NoTransition kivy.uix.screenmanager.NoTransition
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+        ScreenManager:
+            id: scr
+            transition: NoTransition()
+            MDScreen:
+                name: "1"
+                MDLabel:
+                    text: "1"
+                    pos_hint: {"center_y": .5}
+                    halign: "center"
+            MDScreen:
+                name: "2"
+                MDLabel:
+                    text: "2"
+                    pos_hint: {"center_y": .5}
+                    halign: "center"
+            MDScreen:
+                name: "3"
+                MDLabel:
+                    text: "3"
+                    pos_hint: {"center_y": .5}
+                    halign: "center"
+
+    
+
+    MDFloatLayout:
+
+        MDFloatLayout:
+            size_hint_y: 0.05
+            size_hint_x: 1
+            pos_hint: {"x":0, "top": 1}
+            #md_bg_color: "black"
+            MDIconButton:
+                icon: "chevron-left"
+                theme_icon_color: "Custom"
+                icon_color: "black"
+                pos_hint: {'x': 0.002, 'center_y': 0.5}
+                #background_color: 0, 0, 0, 1
+
+            Button:
+                pos_hint: {'right': 0.985, 'center_y': 0.5}
+                background_color: 0, 0, 0, 0
+                size: "110dp", "30dp"
+                size_hint: None, None
+                Image:
+                    id: keyless
+                    source: 'images/KEYLESS.png'
+                    size: "400dp", "500dp"
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+        MDFloatLayout:
+            pos_hint: {"x": 0, "top": .95}
+
+            #md_bg_color: "blue"
+            Image:
+                pos_hint: {"center_x": .5, "top": 0.9}
+                source: "images/key.png"
+                size: "100dp", "100dp"
+                size_hint: None, None
+
+            Label:
+
+                font_size: "20dp"
+                color: 60/255, 60/255, 60/255, 1
+                text: "вул. Клоуна 5, \n ЛНУ, \n ауд. 666"
+                size_hint: None, None
+                size: self.texture_size
+                halign: 'center'
+                pos_hint: {'center_x': 0.5, 'top': .7}
+
+
+            Label:
+                font_size: "12dp"
+                color: 120/255, 120/255, 120/255, 1
+                text: "Адміністратор: дід \n Контакти адміністратора: \n +380000000000 \n admin@gmail.com"
+                size_hint: None, None
+                size: self.texture_size
+                pos_hint: {'center_x': 0.5, 'top': .5}
+
+
+            Label:
+                id: permission
+                text: "Ви не маєте доступу до цього приміщення."
+                font_size: "12dp"
+                size_hint: None, None
+                size: self.texture_size
+
+                pos_hint: {'center_x': 0.5, 'top': .3}
+                color: 1, 0, 0, 1
+
+            Button:
+                text: "Отримати доступ"
+                background_color: 0, 0, 0, 0
+                on_press: root.ask_permission()
+                size: "212dp", "48dp"
+                size_hint: None, None
+                pos_hint: {'center_x': 0.5, 'top': .25}
+                Image:
+                    id: ask_permission
+                    source: 'images/Ask_Button.png'
+                    size: "262dp", "51dp"
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+
+
