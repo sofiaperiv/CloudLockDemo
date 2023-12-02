@@ -1,0 +1,363 @@
+#:import NoTransition kivy.uix.screenmanager.NoTransition
+ScreenManager:
+    id: scr
+    transition: NoTransition()
+    HomeScreen:
+    MainScreen:
+
+
+<MainScreen>:
+    name: 'main'
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        MDFloatLayout:
+            MDFloatLayout:
+                size_hint_y: 0.05
+                size_hint_x: 1
+                pos_hint: {"x":0, "top": 1}
+                #md_bg_color: "black"
+                MDIconButton:
+                    icon: "chevron-left"
+                    theme_icon_color: "Custom"
+                    icon_color: "black"
+                    pos_hint: {'x': 0.002, 'center_y': 0.5}
+                    #background_color: 0, 0, 0, 1
+
+                Button:
+                    pos_hint: {'right': 0.985, 'center_y': 0.5}
+                    background_color: 0, 0, 0, 0
+                    size: "330dp", "90dp"
+                    size_hint: None, None
+                    Image:
+                        id: keyless
+                        source: 'images/KEYLESS.png'
+                        size: "1200dp", "1500dp"
+                        center_x: self.parent.center_x
+                        center_y: self.parent.center_y
+            MDFloatLayout:
+                pos_hint: {"x": 0, "top": .95}
+
+                #md_bg_color: "blue"
+                Image:
+                    pos_hint: {"center_x": .5, "top": 0.9}
+                    source: "images/key.png"
+                    size: "300dp", "300dp"
+                    size_hint: None, None
+
+                Label:
+
+                    font_size: "20dp"
+                    color: 60/255, 60/255, 60/255, 1
+                    text: "вул. Клоуна 5, \n ЛНУ, \n ауд. 666"
+                    size_hint: None, None
+                    size: self.texture_size
+                    halign: 'center'
+                    pos_hint: {'center_x': 0.5, 'top': .7}
+
+
+                Label:
+                    font_size: "12dp"
+                    color: 120/255, 120/255, 120/255, 1
+                    text: "Адміністратор: дід \n Контакти адміністратора: \n +380000000000 \n admin@gmail.com"
+                    size_hint: None, None
+                    size: self.texture_size
+                    pos_hint: {'center_x': 0.5, 'top': .5}
+
+
+                Label:
+                    id: permission
+                    text: "Ви не маєте доступу до цього приміщення."
+                    font_size: "12dp"
+                    size_hint: None, None
+                    size: self.texture_size
+
+                    pos_hint: {'center_x': 0.5, 'top': .3}
+                    color: 1, 0, 0, 1
+
+                Button:
+                    text: "Отримати доступ"
+                    background_color: 0, 0, 0, 0
+                    on_press: root.ask_permission()
+                    size: "636dp", "144dp"
+                    size_hint: None, None
+                    pos_hint: {'center_x': 0.5, 'top': .25}
+                    Image:
+                        id: ask_permission
+                        source: 'images/Ask_Button.png'
+                        size: "636dp", "144dp"
+                        center_x: self.parent.center_x
+                        center_y: self.parent.center_y
+
+                Button:
+                    background_color: 0, 0, 0, 1
+                    on_release: app.root.current = "home"
+                    size: "212dp", "48dp"
+                    size_hint: None, None
+                    pos_hint: {'center_x': 0.5, 'top': .1}
+
+<HomeScreen>:
+    name: 'home'
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        MDFloatLayout:
+            MDFloatLayout:
+                size_hint_y: 0.05
+                size_hint_x: 1
+                pos_hint: {"x":0, "top": 1}
+                #md_bg_color: "black"
+
+                Button:
+                    pos_hint: {'right': 0.985, 'center_y': 0.5}
+                    background_color: 0, 0, 0, 0
+                    size: "110dp", "30dp"
+                    size_hint: None, None
+                    Image:
+                        id: keyless
+                        source: 'images/KEYLESS.png'
+                        size: "1200dp", "1500dp"
+                        center_x: self.parent.center_x
+                        center_y: self.parent.center_y
+            MDFloatLayout:
+                size_hint_y: 0.2
+                size_hint_x: 1
+                pos_hint: {"x":0, "top": 0.95}
+                #md_bg_color: "black"
+                MDCard:
+                    size_hint: None, None
+                    size: dp(70), dp(70)
+                    pos_hint: {'x': 0.1, 'center_y': 0.5}
+
+                    radius: [dp(50), dp(50), dp(50), dp(50)]
+                    canvas.before:
+
+                        Ellipse:
+                            pos: self.pos
+                            size: self.size
+                MDBoxLayout:
+                    #md_bg_color: "black"
+                    orientation: 'horizontal'
+                    spacing: dp(10)
+                    size_hint_x: 0.5
+                    pos_hint: {'right': 0.9, 'center_y': 0.5}
+                    Label:
+                        font_size: '12sp'
+                        text: 'Привіт,\nАбобич Хуй Налобич'
+                        color: 60/255, 60/255, 60/255, 1
+
+
+
+            BoxLayout:
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 0
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                size_hint_y: .3
+                pos_hint: {"center_y": .65}
+                MDCarousel:
+                    MDFloatLayout:
+                        size_hint_x: 1
+                        canvas.before:
+                            Color:
+                                rgba: 0, 0, 0, 0
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                        Button:
+                            on_release: app.root.current = "main"
+                            background_color: 1, 1, 1, 0
+                            size_hint: None, None
+                            pos_hint: {"center_x": .25, "center_y": .5}
+
+                            Image:
+                                id: key1
+                                source: 'images/key.png'
+                                center: self.parent.center
+
+                        Label:
+                            pos_hint: {"center_x": .25, "top": .65}
+                            text: "вул. Гандона 4, \nкв.3"
+                            color: 0, 0, 0, 1
+                            halign: "center"
+                            font_size: 16
+
+                        Button:
+                            on_release: app.root.current = "main"
+                            background_color: 1, 1, 1, 0
+                            size_hint: None, None
+                            pos_hint: {"center_x": .75, "center_y": .5}
+
+                            Image:
+                                id: key1
+                                source: 'images/key.png'
+                                center: self.parent.center
+
+                        Label:
+                            pos_hint: {"center_x": .75, "top": .65}
+                            text: "вул. Гандона 4, \nкв.3"
+                            color: 0, 0, 0, 1
+                            halign: "center"
+                            font_size: 16
+
+                    MDFloatLayout:
+                        size_hint_x: 1
+                        canvas.before:
+                            Color:
+                                rgba: 0, 0, 0, 0
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                        Button:
+                            on_release: app.root.current = "main"
+                            background_color: 1, 1, 1, 0
+                            size_hint: None, None
+                            pos_hint: {"center_x": .25, "center_y": .5}
+
+                            Image:
+                                id: key1
+                                source: 'images/key.png'
+                                center: self.parent.center
+
+                        Label:
+                            pos_hint: {"center_x": .25, "top": .65}
+                            text: "вул. Гандона 4, \nкв.3"
+                            color: 0, 0, 0, 1
+                            halign: "center"
+                            font_size: 16
+
+                        Button:
+                            on_release: app.root.current = "main"
+                            background_color: 1, 1, 1, 0
+                            size_hint: None, None
+                            pos_hint: {"center_x": .75, "center_y": .5}
+
+                            Image:
+                                id: key1
+                                source: 'images/key.png'
+                                center: self.parent.center
+
+                        Label:
+                            pos_hint: {"center_x": .75, "top": .65}
+                            text: "вул. Гандона 4, \nкв.3"
+                            color: 0, 0, 0, 1
+                            halign: "center"
+                            font_size: 16
+
+            BoxLayout:
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 0
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                size_hint_y: .3
+                pos_hint: {"center_y": .35}
+                MDCarousel:
+                    MDFloatLayout:
+                        size_hint_x: 1
+                        canvas.before:
+                            Color:
+                                rgba: 0, 0, 0, 0
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                        Button:
+                            on_release: app.root.current = "main"
+                            background_color: 1, 1, 1, 0
+                            size_hint: None, None
+                            pos_hint: {"center_x": .25, "center_y": .5}
+
+                            Image:
+                                id: key1
+                                source: 'images/key.png'
+                                center: self.parent.center
+
+                        Label:
+                            pos_hint: {"center_x": .25, "top": .65}
+                            text: "вул. Гандона 4, \nкв.3"
+                            color: 0, 0, 0, 1
+                            halign: "center"
+                            font_size: 16
+
+                        Button:
+                            on_release: app.root.current = "main"
+                            background_color: 1, 1, 1, 0
+                            size_hint: None, None
+                            pos_hint: {"center_x": .75, "center_y": .5}
+
+                            Image:
+                                id: key1
+                                source: 'images/key.png'
+                                center: self.parent.center
+
+                        Label:
+                            pos_hint: {"center_x": .75, "top": .65}
+                            text: "вул. Гандона 4, \nкв.3"
+                            color: 0, 0, 0, 1
+                            halign: "center"
+                            font_size: 16
+
+                    MDFloatLayout:
+                        size_hint_x: 1
+                        canvas.before:
+                            Color:
+                                rgba: 0, 0, 0, 0
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                        Button:
+                            on_release: app.root.current = "main"
+                            background_color: 1, 1, 1, 0
+                            size_hint: None, None
+                            pos_hint: {"center_x": .25, "center_y": .5}
+
+                            Image:
+                                id: key1
+                                source: 'images/key.png'
+                                center: self.parent.center
+
+
+                        Label:
+                            pos_hint: {"center_x": .25, "top": .65}
+                            text: "вул. Гандона 4, \nкв.3"
+                            color: 0, 0, 0, 1
+                            halign: "center"
+                            font_size: 16
+
+                        Button:
+                            on_release: app.root.current = "main"
+                            background_color: 1, 1, 1, 0
+                            size_hint: None, None
+                            pos_hint: {"center_x": .75, "center_y": .5}
+
+                            Image:
+                                id: key1
+                                source: 'images/key.png'
+                                center: self.parent.center
+
+                        Label:
+                            pos_hint: {"center_x": .75, "top": .65}
+                            text: "вул. Гандона 4, \nкв.3"
+                            color: 0, 0, 0, 1
+                            halign: "center"
+                            font_size: 16
+
+            Button:
+                text: "Отримати доступ"
+                background_color: 0, 0, 0, 0
+
+                size: "424dp", "96dp"
+                size_hint: None, None
+                pos_hint: {"center_x": .5, "center_y": .1}
+                Image:
+                    id: add_key
+                    source: 'images/add_key.png'
+                    size: "424dp", "96dp"
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+
+
+
